@@ -1,0 +1,121 @@
+﻿@model IEnumerable<TravelAgency.Models.Travel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a class='btn btn-outline-secondary text-dark btn-lg' id ="btn-add-travel" style="width:100%" asp-action="Create">Dodaj wycieczkę</a>
+</p>
+<table id="travelTable" class="table table-condesed" style="text-align:center">
+    <thead>
+        <tr>
+            <th>
+                Miejsce
+            </th>
+            <th>
+                Data od
+            </th>
+            <th>
+                Data do
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+                Liczba osób
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>   
+            <th>
+                @Html.DisplayFor(modelItem => item.TravelPlace.PlaceName)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonNumber)
+            </td>
+            <td>
+                <div class="text-center">
+                    <a class='btn btn-success text-white' style='cursor:pointer; width:110px;' asp-action="Edit" asp-route-id="@item.Id"><i class='far fa-edit'></i> Edytuj</a>
+                    <a onclick=Delete("/Admin/Travel/Delete/@item.Id") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'><i class="fas fa-trash-alt"></i> Usuń</a>         
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#travelTable').DataTable({
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "Brak rekordów",
+                    "info": "Pokaż _PAGE_ z _PAGES_",
+                    "infoEmpty": "Brak dostępnych rekordów",
+                    "infoFiltered": "(filtruj z _MAX_ wszystkich rekordów)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Wyświetl _MENU_ rekrodów na stronę",
+                    "loadingRecords": "Ładowanie...",
+                    "processing": "Przetwarzanie...",
+                    "search": "Wyszukaj:",
+                    "zeroRecords": "Brak wpisów w bazie",
+                    "paginate": {
+                        "first": "Pierwszy",
+                        "last": "Ostatni",
+                        "next": "Następny",
+                        "previous": "Poprzedni"
+                    },
+                    "aria": {
+                        "sortAscending": ": aktywuj aby posortować rosnąco",
+                        "sortDescending": ": aktywuj aby posortować malejąco"
+                    }
+                }
+            });
+        });
+
+        function Delete(url) {
+            swal({
+                title: "Jesteś pewny?",
+                text: "Nie będzie możliwości przywrócenia wycieczki!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Tak, usuń rekord",
+                cancelButtonText: "Anuluj",
+                closeOnconfirm: true
+            }, function () {
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            toastr.success(data.message);
+                            window.location.reload();
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+}
+

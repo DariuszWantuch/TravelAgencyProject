@@ -1,0 +1,73 @@
+﻿@model TravelAgency.Models.Travel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edycja </h1>
+
+<h4>Wycieczki</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="DateFrom" class="control-label"></label>
+                <input asp-for="DateFrom" class="form-control" />
+                <span asp-validation-for="DateFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="DateTo" class="control-label"></label>
+                <input asp-for="DateTo" class="form-control" />
+                <span asp-validation-for="DateTo" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="TravelPlaceId" class="control-label"></label>
+                <select asp-for="TravelPlaceId" class="form-control" asp-items="ViewBag.TravelPlaceId"></select>
+                <span asp-validation-for="TravelPlaceId" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="PersonNumber" class="control-label"></label>
+                <input asp-for="PersonNumber" class="form-control" />
+                <span asp-validation-for="PersonNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group row col-5" style="margin:1% auto">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+            </div>
+            <div class="form-group row">
+                <div class="form-group row col-5" style="margin:1% auto">
+                    <div class="col">
+                        <input type="submit" value="Zapisz" class="btn btn-danger form-control" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-info form-control">Powrót</a>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+  
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

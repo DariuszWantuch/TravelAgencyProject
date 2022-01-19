@@ -1,0 +1,35 @@
+﻿@model TravelAgency.Models.TravelPlace
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Dodaj miejsce wycieczki</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row col-5" style="margin:0 auto">
+                <label asp-for="PlaceName" class="control-label">Miejsce</label>
+                <input asp-for="PlaceName" class="form-control" />
+                <span asp-validation-for="PlaceName" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="form-group row col-5" style="margin:1% auto">
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger form-control">Dodaj</button>
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-info form-control">Powrót</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

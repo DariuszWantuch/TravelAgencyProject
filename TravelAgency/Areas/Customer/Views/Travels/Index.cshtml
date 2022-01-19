@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TravelAgency.Models.Travel>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Wycieczki</h1>
+
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <strong> Miejsce: </strong> @Html.DisplayFor(modelItem => item.TravelPlace.PlaceName)<br />
+                                <strong> Data od: </strong> @Html.DisplayFor(modelItem => item.DateFrom)<br />
+                                <strong> Data do: </strong> @Html.DisplayFor(modelItem => item.DateTo)<br /><br />
+                                <strong> Cena: </strong> @Html.DisplayFor(modelItem => item.Price)<br />
+                                <!-- Product price-->
+
+                                <strong> Ilość miejsc:</strong>  @Html.DisplayFor(modelItem => item.PersonNumber)<br />
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark mt-auto">Szczegóły</a><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+@*<div class="col-12">
+        <div class="row my-4">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4">
+
+                        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" /><br />
+                        <strong> @Html.DisplayNameFor(model => model.DateFrom)</strong>: @Html.DisplayFor(modelItem => item.DateFrom)<br />
+                        <strong> @Html.DisplayNameFor(model => model.DateTo)</strong>: @Html.DisplayFor(modelItem => item.DateTo)<br />
+
+                        <strong> @Html.DisplayNameFor(model => model.PersonNumber)</strong>:  @Html.DisplayFor(modelItem => item.PersonNumber)<br />
+
+
+                        <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a><br />
+
+
+                     </div>
+                }
+        </div>
+    </div>*@
+

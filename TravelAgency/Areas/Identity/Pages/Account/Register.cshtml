@@ -1,0 +1,106 @@
+﻿@page
+@using TravelAgency.Utility
+@model RegisterModel
+@{
+    ViewData["Title"] = "Rejestracja";
+}
+
+<h1 style="text-align:center">@ViewData["Title"]</h1>
+
+<div class="row backgroundWhite" >
+    <div class="col-md-12">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.FirstName">Imię</label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.Surname">Nazwisko</label>
+                    <input asp-for="Input.Surname" class="form-control" />
+                    <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.Password">Hasło</label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.ConfirmPassword">Powtórz hasło</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.PhoneNumber">Telefon</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.StreetAddress">Ulica</label>
+                    <input asp-for="Input.StreetAddress" class="form-control" />
+                    <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.City">Miasto</label>
+                    <input asp-for="Input.City" class="form-control" />
+                    <span asp-validation-for="Input.City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5" style="margin:auto">
+                    <label asp-for="Input.PostalCode">Kod pocztowy</label>
+                    <input asp-for="Input.PostalCode" class="form-control" />
+                    <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-5 row" style="margin:auto">
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger form-control">Zarejestruj</button>
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" asp-controller="Home" asp-area="Customer" class="btn btn-info form-control">Powrót</a>
+                    </div>
+                </div>
+            </div>
+          
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,88 @@
+﻿@model TravelAgency.Models.Travel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<center><h1>Szczegóły wycieczki :  <strong>@Html.DisplayFor(model => model.TravelPlace.PlaceName)</strong></h1> @Html.DisplayFor(model => model.DateFrom) - @Html.DisplayFor(model => model.DateTo)<br /> <br /><br /><br /></center>
+
+<div class="row">
+    <div class="col-md">
+        <p style="text-align: right">
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" width="512" height="284" alt="..." />
+        </p>
+    </div>
+    <div class="col-md">
+        <font size="3">
+            <strong>Podczas pobyt mamy do zaoferowania:</strong> <br />
+            Śniadanie (8.00-10.30), <br />
+            Obiad (13.30-16.00), <br />
+            Kolacja (20.00-23.00) w formie bufetu. <br />
+            Ciepłe i zimne przekąski między posiłkami głównymi: <br /> -hot dogi, hamburgery, sałatki, ciasto; kawa, herbata. <br />
+            Lokalne i wybrane importowane napoje alkoholowe oraz bezalkoholowe (11.00-23.00). <br /> <br />
+            <strong>!!!Wymagane noszenie opasek all inclusive!!!</strong> <br /> <br />
+            Opis: @Html.DisplayFor(model => model.Description)
+
+
+        </font>
+    </div>
+</div>
+<br />
+<center>
+    <img data-controller="lazy-loading" data-src="https://cdn.shoplo.com/2325/articles/zadowoleni-klienci-opinie-recenzje-sklep.png?v=1527011361" alt="" class="img__img" src="https://cdn.shoplo.com/2325/articles/zadowoleni-klienci-opinie-recenzje-sklep.png?v=1527011361" data-loaded="true" data-lazy-loading-complete="true">
+</center>
+<div class="form-group row">
+    <div class="form-group row col-5" style="margin:1% auto">
+        <div class="col">
+                <a onclick=Delete("/Customer/Travels/Delete/@Model.Id") class='btn btn-success form-control'>Zarezerwuj</a>
+           </div>
+            <div class="col">
+                <ahref ="#" onclick="goBack()" class="btn btn-info form-control">Powrót</a>
+            </div>
+        </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back()
+        }
+
+        function Delete(url) {
+            swal({
+                title: "Czy na pewno chcesz zarezerwować tą wycieczkę?",
+                text: "Będziesz miał możliwośc wycofania się!(5 dni przed rozpoczęciem wycieczki)",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Tak, Zarezerwuj",
+                cancelButtonText: "Anuluj",
+                closeOnconfirm: true
+            }, function () {
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            toastr.success(data.message);
+                            window.open("/Customer/MyTravels");
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            });
+        }
+
+    </script>
+}
+
+
+
+
+
+
+
